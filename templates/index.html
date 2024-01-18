@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>TO-DO List</h1>
+
+    <form method="post" action="/">
+        <label for="task">Add a Task:</label>
+        <input type="text" id="task" name="task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <input type="checkbox" id="{{ loop.index }}" name="task" value="{{ task }}">
+                <label for="{{ loop.index }}">{{ task }}</label>
+                <button class="remove" onclick="window.location.href='/remove/{{ loop.index }}'">Remove</button>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
